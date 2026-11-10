@@ -1,10 +1,12 @@
 package server
 
 import (
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 )
@@ -84,6 +86,45 @@ func TestFilesServesOnlyTheSyncedSet(t *testing.T) {
 	for _, path := range []string{"secret.txt", "..%2Fsecret.txt", "skills/..%2F..%2Fsecret.txt"} {
 		if got := status(t, http.MethodGet, ts.URL+"/files/"+path); got != http.StatusNotFound {
 			t.Errorf("%s: status %d, want 404", path, got)
+		}
+	}
+}
+
+func TestInstallScriptUsesCallerHost(t *testing.T) {
+	_, ts, _ := newTestServer(t)
+
+	get := func(host string) (int, string) {
+		t.Helper()
+		req, err := http.NewRequest(http.MethodGet, ts.URL+"/install.sh", nil)
+		if err != nil {
+			t.Fatal(err)
+		}
+		req.Host = host
+		resp, err := http.DefaultClient.Do(req)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer resp.Body.Close()
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return resp.StatusCode, string(body)
+	}
+
+	code, body := get("myserver:8377")
+	if code != http.StatusOK {
+		t.Fatalf("status %d, want 200", code)
+	}
+	if !strings.Contains(body, `SERVER="http://myserver:8377"`) || strings.Contains(body, "__SERVER__") {
+		t.Error("install script does not have the server address filled in")
+	}
+
+	// The script is piped to a shell, so a Host that could break out of the
+	// quoted SERVER value must be refused.
+	for _, host := range []string{`x";rm -rf ~;"`, "x$(id)", "x y"} {
+		if code, _ := get(host); code != http.StatusBadRequest {
+			t.Errorf("Host %q: status %d, want 400", host, code)
 		}
 	}
 }

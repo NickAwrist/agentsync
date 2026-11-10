@@ -4,6 +4,10 @@
 
 <h1 align="center">agentsync</h1>
 
+<p align="center">
+  <a href="https://github.com/NickAwrist/agentsync/actions/workflows/check.yml"><img src="https://github.com/NickAwrist/agentsync/actions/workflows/check.yml/badge.svg" alt="Check status"></a>
+</p>
+
 Keep your AI agent instructions and skills identical on every machine.
 
 You keep one `AGENTS.md` and one `skills/` directory on a machine you pick as
