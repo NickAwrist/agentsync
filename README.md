@@ -1,4 +1,8 @@
-# agentsync
+<p align="center">
+  <img src="assets/icon.svg" width="96" height="96" alt="agentsync icon">
+</p>
+
+<h1 align="center">agentsync</h1>
 
 Keep your AI agent instructions and skills identical on every machine.
 
