@@ -9,7 +9,13 @@ jobs:
   check:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            cgo: 1
+          # macOS clients run the cgo-free binaries from make dist. Go 1.22
+          # also links cgo binaries without LC_UUID, which macOS won't load.
+          - os: macos-latest
+            cgo: 0
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v5
@@ -17,6 +23,8 @@ jobs:
         with:
           go-version-file: go.mod
       - run: make check
+        env:
+          CGO_ENABLED: ${{ matrix.cgo }}
       - name: Cross-compile client binaries
         if: runner.os == 'Linux'
         run: make dist
