@@ -1,0 +1,11 @@
+[Unit]
+Description=agentsync server
+After=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/agentsync serve --dir @DIR@
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

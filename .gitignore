@@ -1,0 +1,6 @@
+# Your own instructions and skills live in this checkout but stay out of git.
+/AGENTS.md
+/skills/
+/archive/
+
+/dist/
