@@ -15,7 +15,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/NickAwrist/agent_config/internal/manifest"
+	"github.com/NickAwrist/agentsync/internal/manifest"
 )
 
 // Client syncs a local mirror directory against one server.

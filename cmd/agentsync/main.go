@@ -18,11 +18,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/NickAwrist/agent_config/internal/client"
-	"github.com/NickAwrist/agent_config/internal/config"
-	"github.com/NickAwrist/agent_config/internal/link"
-	"github.com/NickAwrist/agent_config/internal/manifest"
-	"github.com/NickAwrist/agent_config/internal/server"
+	"github.com/NickAwrist/agentsync/internal/client"
+	"github.com/NickAwrist/agentsync/internal/config"
+	"github.com/NickAwrist/agentsync/internal/link"
+	"github.com/NickAwrist/agentsync/internal/manifest"
+	"github.com/NickAwrist/agentsync/internal/server"
 )
 
 const (

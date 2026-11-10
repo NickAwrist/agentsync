@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/NickAwrist/agent_config/internal/config"
+	"github.com/NickAwrist/agentsync/internal/config"
 )
 
 func setup(t *testing.T) (Linker, string) {

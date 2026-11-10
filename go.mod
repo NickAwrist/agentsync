@@ -1,3 +1,3 @@
-module github.com/NickAwrist/agent_config
+module github.com/NickAwrist/agentsync
 
 go 1.22

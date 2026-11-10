@@ -16,7 +16,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/NickAwrist/agent_config/internal/manifest"
+	"github.com/NickAwrist/agentsync/internal/manifest"
 )
 
 //go:embed install.sh

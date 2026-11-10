@@ -23,14 +23,14 @@ The server is the machine where you edit your instructions and skills. It
 needs Linux with systemd, Go 1.22 or newer, and `make`.
 
 ```sh
-git clone https://github.com/NickAwrist/agent_config.git
-cd agent_config
+git clone https://github.com/NickAwrist/agentsync.git
+cd agentsync
 ```
 
 Put your instructions and skills in the checkout:
 
 ```
-agent_config/
+agentsync/
   AGENTS.md              your global instructions
   skills/
     my-skill/SKILL.md    one directory per skill

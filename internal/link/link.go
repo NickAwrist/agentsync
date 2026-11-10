@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/NickAwrist/agent_config/internal/config"
-	"github.com/NickAwrist/agent_config/internal/manifest"
+	"github.com/NickAwrist/agentsync/internal/config"
+	"github.com/NickAwrist/agentsync/internal/manifest"
 )
 
 // Linker links each harness's paths to the config in Source. Source must be

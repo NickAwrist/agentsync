@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/NickAwrist/agent_config/internal/manifest"
-	"github.com/NickAwrist/agent_config/internal/server"
+	"github.com/NickAwrist/agentsync/internal/manifest"
+	"github.com/NickAwrist/agentsync/internal/server"
 )
 
 func write(t *testing.T, root, rel, content string, mode os.FileMode) {
