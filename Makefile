@@ -16,8 +16,7 @@ dist:
 
 # Set this machine up as the server: run the server for this checkout as a
 # systemd user service, then link this checkout into the local harnesses.
-server: install dist
-	@test -f AGENTS.md || { echo "No AGENTS.md here. Add your AGENTS.md and skills/ to $(CURDIR) first."; exit 1; }
+server: AGENTS.md install dist
 	mkdir -p $(HOME)/.config/systemd/user
 	sed 's|@DIR@|$(CURDIR)|' deploy/agentsync-server.service > $(HOME)/.config/systemd/user/agentsync-server.service
 	systemctl --user daemon-reload
@@ -28,6 +27,11 @@ server: install dist
 	@echo
 	@echo "Server is running. Set up each client with:"
 	@echo "  curl -fsSL http://$$(hostname):8377/install.sh | sh"
+
+# Runs only when the file is missing, so the server target stops before it
+# builds or installs anything.
+AGENTS.md:
+	@echo "No AGENTS.md here. Add your AGENTS.md and skills/ to $(CURDIR) first."; exit 1
 
 check:
 	@test -z "$$(gofmt -l .)" || { echo "gofmt needed:"; gofmt -l .; exit 1; }
